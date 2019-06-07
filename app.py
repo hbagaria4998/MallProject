@@ -15,12 +15,12 @@ def main():
     if flask.request.method == 'GET':
         # Just render the initial form, to get input
         return(flask.render_template('main.html'))
-    
+
     if flask.request.method == 'POST':
         # Extract the input
         annual_income = flask.request.form['annual_income']
         spending_score = flask.request.form['spending_score']
-       
+
 
         # Make DataFrame for model
         input_variables = pd.DataFrame([[annual_income, spending_score]],
@@ -30,8 +30,8 @@ def main():
 
         # Get the model's prediction
         prediction = model.predict(input_variables)[0]
-	
-    
+
+
         # Render the form again, but add in the prediction and remind user
         # of the values they input before
         return flask.render_template('main.html',
